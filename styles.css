@@ -1,0 +1,250 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    --cursor-x: 0px;
+    --cursor-y: 0px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+nav {
+    padding: 1rem 0;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007AFF;
+    text-shadow: 0 0 10px rgba(0, 122, 255, 0.5);
+}
+
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    text-align: center;
+}
+
+.glow-text {
+    font-size: 5rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #007AFF, #FFF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: #007AFF;
+    margin-left: 8px;
+    animation: blink 0.7s infinite;
+    box-shadow: 0 0 8px #007AFF,   /* Inner glow */
+                0 0 15px #007AFF,   /* Middle glow */
+                0 0 25px #007AFF;   /* Outer glow */
+    filter: blur(0.5px);           /* Slight blur for softer edge */
+}
+
+@keyframes blink {
+    0% { 
+        opacity: 1;
+        box-shadow: 0 0 8px #007AFF,
+                   0 0 15px #007AFF,
+                   0 0 25px #007AFF;
+    }
+    50% { 
+        opacity: 0;
+        box-shadow: none;
+    }
+    100% { 
+        opacity: 1;
+        box-shadow: 0 0 8px #007AFF,
+                   0 0 15px #007AFF,
+                   0 0 25px #007AFF;
+    }
+}
+
+.subheading {
+    font-size: 1.5rem;
+    color: #888;
+    margin-bottom: 3rem;
+    letter-spacing: 1px;
+}
+
+.profile-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 3rem 0;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    background: url('path-to-your-image.jpg') center/cover;
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.glow-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 50%, rgba(0, 122, 255, 0.2), transparent 70%);
+    filter: blur(30px);
+    z-index: 0;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn.primary {
+    background: #007AFF;
+    color: #fff;
+}
+
+.btn.secondary {
+    background: transparent;
+    border: 1px solid #007AFF;
+    color: #007AFF;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+    .glow-text {
+        font-size: 3rem;
+    }
+
+    .profile-container {
+        width: 300px;
+        height: 300px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+}
+
+.soft-select {
+    display: none;
+}
+
+.soft-link {
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    background-color: transparent;
+    color: #007AFF;
+    border: 2px solid #007AFF;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    margin-top: 8rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.soft-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(0, 122, 255, 0.3), transparent 70%);
+    opacity: 0;
+    filter: blur(15px);
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.soft-link:hover {
+    background-color: rgba(0, 122, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 122, 255, 0.2);
+}
+
+.soft-link:hover::before {
+    opacity: 1;
+    animation: sparkle 1.5s infinite;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+}
+
+/* Add this new style for the cursor effect */
+body::before {
+    content: '';
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, rgba(0, 122, 255, 0.4), transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+    left: var(--cursor-x);
+    top: var(--cursor-y);
+    transform: translate(-50%, -50%);
+    filter: blur(5px);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+body.has-cursor::before {
+    opacity: 1;
+} 
